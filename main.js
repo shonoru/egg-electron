@@ -12,5 +12,5 @@ app.on('ready', () => {
     mainWindow.show();
   });
 
-  setMainMenu();
+  setMainMenu(mainWindow);
 });
