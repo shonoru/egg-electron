@@ -31,6 +31,10 @@ function setMainMenu(mainWindow) {
         { role: 'copy' },
         { role: 'paste' },
         { role: 'selectall' },
+        { role: 'separator' },
+        { role: 'toggledevtools'},
+        { role: 'reload'},
+        { role: 'forcereload'},
       ]
     },
     {
