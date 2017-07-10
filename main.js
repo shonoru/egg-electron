@@ -1,6 +1,6 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
-let mainWindow;
+let mainWindow, windows = [];
 const { setMainMenu } = require('./main-menu.js');
 
 app.on('ready', () => {
@@ -13,4 +13,20 @@ app.on('ready', () => {
   });
 
   setMainMenu(mainWindow);
+
+  ipcMain.on('create-window', (event, props) => createBrowserWindow(props));
 });
+
+function createBrowserWindow(browserWindowOpts) {
+  let win = new BrowserWindow(Object.assign({
+    width: 400,
+    height: 300
+  }, browserWindowOpts));
+
+  windows.push(win);
+  win.loadURL(path.join('file://', __dirname, 'index.html'));
+
+  win.on('close', () => {
+    windows.splice(windows.indexOf(win), 1);
+  })
+}
