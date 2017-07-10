@@ -15,6 +15,7 @@ app.on('ready', () => {
   setMainMenu(mainWindow);
 
   ipcMain.on('create-window', (event, props) => createBrowserWindow(props));
+  ipcMain.on('get-window-count', sendWindowCount);
 });
 
 function createBrowserWindow(browserWindowOpts) {
@@ -28,5 +29,12 @@ function createBrowserWindow(browserWindowOpts) {
 
   win.on('close', () => {
     windows.splice(windows.indexOf(win), 1);
+    sendWindowCount();
+  })
+}
+
+function sendWindowCount() {
+  windows.forEach(win => {
+    win.webContents.send('window-count', { count: windows.length });
   })
 }
