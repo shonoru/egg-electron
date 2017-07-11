@@ -1,16 +1,23 @@
 {
   "name": "egg-electron",
+  "productName": "Egg Electron",
   "version": "1.0.0",
-  "description": "",
+  "description": "Egg Electron package",
   "main": "main.js",
   "scripts": {
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "package": "build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Andrey",
   "license": "ISC",
   "devDependencies": {
     "devtron": "^1.4.0",
-    "electron": "^1.6.11"
+    "electron": "^1.6.11",
+    "electron-builder": "^19.13.0"
+  },
+  "build": {
+    "appId": "com.egg.Electron",
+    "files": "!build-assets${/*}"
   }
 }
